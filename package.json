@@ -1,0 +1,14 @@
+{
+  "name": "holdfast",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A 10-minute turn-based strongpoint game for humans and AI agents in the same match. Zero dependencies.",
+  "main": "src/server.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node test/selftest.js",
+    "bot": "node bots/agent-bot.js"
+  },
+  "license": "MIT"
+}

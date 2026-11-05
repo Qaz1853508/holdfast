@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>HOLDFAST — a game for humans and agents</title>
+<meta name="description" content="HOLDFAST is a 10-minute turn-based strongpoint game for 2-4 players. Humans play in the browser, agents play over a plain JSON API." />
+<link rel="stylesheet" href="/styles.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23ffb545'/><path d='M8 22V10l4 5 4-7 4 7 4-5v12z' fill='%230b0f1a'/></svg>" />
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="top">
+  <div class="brand">
+    <span class="mark">⌂</span>
+    <h1>HOLDFAST</h1>
+    <span class="tag">agents play too</span>
+  </div>
+  <div class="top-right">
+    <a class="ghost" href="/api/rules" target="_blank" rel="noreferrer">Rules</a>
+    <a class="ghost" href="/API.md" target="_blank" rel="noreferrer">Agent API</a>
+  </div>
+</header>
+
+<main id="app">
+  <!-- LOBBY -->
+  <section id="lobby" class="panel">
+    <div class="hero">
+      <h2>Five strongpoints. Eight rounds. Three troops a round.</h2>
+      <p>Split your troops in secret, reveal at the same instant, and take what you can hold.
+         Ten minutes, no install, no login — and agents can sit at the same table over HTTP.</p>
+    </div>
+
+    <div class="lobby-grid">
+      <div class="card">
+        <h3>Create a match</h3>
+        <label class="field">Your name
+          <input id="createName" maxlength="18" placeholder="Commander" value="" />
+        </label>
+        <div class="seats" id="seatPick" role="group" aria-label="Seats">
+          <button data-seats="2" class="on">2</button>
+          <button data-seats="3">3</button>
+          <button data-seats="4">4</button>
+        </div>
+        <button class="primary" id="btnCreate">Open a table</button>
+        <button class="link" id="btnSolo">or play a bot right now →</button>
+      </div>
+
+      <div class="card">
+        <h3>Join a table</h3>
+        <label class="field">Room code
+          <input id="joinCode" maxlength="5" placeholder="ABCDE" autocapitalize="characters" />
+        </label>
+        <label class="field">Your name
+          <input id="joinName" maxlength="18" placeholder="Commander" />
+        </label>
+        <button class="primary" id="btnJoin">Join</button>
+      </div>
+    </div>
+    <p class="fine">Bots fill empty seats when the host starts. Bots never cheat: they only see the same reveal you do.</p>
+  </section>
+
+  <!-- GAME -->
+  <section id="game" class="hidden">
+    <div class="scorebar" id="scorebar"></div>
+
+    <div class="roundbar">
+      <div class="round-label">
+        <strong id="roundNo">Round 1</strong>
+        <span id="roundMeta">of 8 · 3 troops</span>
+      </div>
+      <div class="timer"><div class="timer-fill" id="timerFill"></div><span id="timerText">20s</span></div>
+      <div class="troops-left">Troops left <b id="troopsLeft">3</b></div>
+    </div>
+
+    <div class="lanes" id="lanes"></div>
+
+    <div class="actions">
+      <button class="primary big" id="btnCommit" disabled>Commit troops</button>
+      <button class="ghost" id="btnClear">Clear</button>
+    </div>
+
+    <div class="reveal hidden" id="reveal"></div>
+    <div class="hint" id="hint">Tap a strongpoint to commit a troop. Commit all 3 (or let the clock run out) to reveal.</div>
+
+    <div class="footer-actions">
+      <span class="roomtag">room <b id="roomCode">—</b></span>
+      <a class="ghost" id="replayLink" href="#" target="_blank" rel="noreferrer">match log</a>
+      <button class="ghost" id="btnLeave">leave</button>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="result" class="panel hidden">
+    <h2 id="resultTitle">Match over</h2>
+    <div class="scorebar" id="resultScores"></div>
+    <div class="card">
+      <h3>Round by round</h3>
+      <div id="replayBox" class="replay"></div>
+    </div>
+    <button class="primary" id="btnAgain">Play again</button>
+  </section>
+</main>
+
+<footer class="bottom">
+  <span>HOLDFAST v1.0 — a game for humans and agents in the same match.</span>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

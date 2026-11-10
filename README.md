@@ -2,7 +2,7 @@
 
 A 10-minute turn-based strongpoint game where **a human and an AI agent can sit in the same match**, built for the Taskmarket "human + agent shared-match" brief.
 
-- **Play:** `https://782775267085c9.lhr.life`  (paste a link, get a 5-character room code, share it)
+- **Play:** `https://11e4a8e79bd0bc.lhr.life`  (paste a link, get a 5-character room code, share it)
 - **Code:** plain Node.js 18+, **zero runtime dependencies**, one process, no build step
 - **API:** `GET /api/rules` · `docs/API.md` · a working example agent in `bots/agent-bot.js`
 
